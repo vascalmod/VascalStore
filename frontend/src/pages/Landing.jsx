@@ -9,6 +9,7 @@ export default function Landing() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const navigate = useNavigate()
+  const captchaRef = useRef(null)
 
   const handleGetKey = async () => {
     if (!countdownDone || !captchaToken) return
@@ -119,7 +120,7 @@ export default function Landing() {
               <div className="text-green-400 font-medium text-lg mb-4">You can now proceed!</div>
               <div className="mb-4">
                 <HCaptcha
-                  ref={useRef(null)}
+                  ref={captchaRef}
                   sitekey={import.meta.env.VITE_HCAPTCHA_SITE_KEY}
                   onVerify={setCaptchaToken}
                   onError={() => setError('Captcha verification failed')}
