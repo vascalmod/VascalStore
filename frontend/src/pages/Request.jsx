@@ -1,8 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
 import HCaptcha from '@hcaptcha/react-hcaptcha'
-import AdPlaceholder from '../components/AdPlaceholder'
-import AdBanner from '../components/AdBanner'
 import CopyButton from '../components/CopyButton'
 import LoadingSkeleton from '../components/LoadingSkeleton'
 
@@ -104,38 +102,12 @@ export default function Request() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-900 px-3 py-4 md:px-8 md:py-8 relative">
-      <AdPlaceholder position="top" />
-      
+    <div className="min-h-screen bg-slate-900 px-3 py-4 md:px-8 md:py-8">
       <div className="max-w-4xl mx-auto">
-        <AdBanner
-          adKey="a44d7edf4b87991fd414ad3ceb09ab89"
-          width={468}
-          height={60}
-          src="https://www.highperformanceformat.com/a44d7edf4b87991fd414ad3ceb09ab89/invoke.js"
-        />
-
         <div className="text-center mb-6">
           <h1 className="text-2xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-4">
             Generate API Key
           </h1>
-        </div>
-
-        <AdPlaceholder position="middle" />
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 my-3">
-          <AdBanner
-            adKey="ee6632ab89f404d63d360e459d424ba6"
-            width={300}
-            height={250}
-            src="https://www.highperformanceformat.com/ee6632ab89f404d63d360e459d424ba6/invoke.js"
-          />
-          <AdBanner
-            adKey="3e7d869c72d88cf159a02db273176ad3"
-            width={160}
-            height={600}
-            src="https://www.highperformanceformat.com/3e7d869c72d88cf159a02db273176ad3/invoke.js"
-          />
         </div>
 
         <div className="bg-slate-800/50 backdrop-blur-lg border border-slate-700 rounded-xl p-4 md:p-8 shadow-xl">
@@ -184,8 +156,6 @@ export default function Request() {
           )}
         </div>
       </div>
-
-      <AdPlaceholder position="sticky-mobile" />
     </div>
   )
 }

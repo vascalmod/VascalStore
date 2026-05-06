@@ -1,8 +1,6 @@
 import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import HCaptcha from '@hcaptcha/react-hcaptcha'
-import AdPlaceholder from '../components/AdPlaceholder'
-import AdBanner from '../components/AdBanner'
 import Countdown from '../components/Countdown'
 
 export default function Landing() {
@@ -33,9 +31,7 @@ export default function Landing() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-900 px-3 py-4 md:px-8 md:py-8 relative">
-      <AdPlaceholder position="top" />
-      
+    <div className="min-h-screen bg-slate-900 px-3 py-4 md:px-8 md:py-8">
       <div className="max-w-4xl mx-auto">
         {/* HERO SECTION */}
         <div className="text-center mb-6 md:mb-12">
@@ -114,31 +110,6 @@ export default function Landing() {
           </div>
         </div>
 
-        {/* BANNERS - REDUCED SPACING */}
-        <AdBanner
-          adKey="a44d7edf4b87991fd414ad3ceb09ab89"
-          width={468}
-          height={60}
-          src="https://www.highperformanceformat.com/a44d7edf4b87991fd414ad3ceb09ab89/invoke.js"
-        />
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 my-3">
-          <AdBanner
-            adKey="e29498aa566573401e1e8a9cdf75f02a"
-            width={160}
-            height={300}
-            src="https://www.highperformanceformat.com/e29498aa566573401e1e8a9cdf75f02a/invoke.js"
-          />
-          <AdBanner
-            adKey="ee6632ab89f404d63d360e459d424ba6"
-            width={300}
-            height={250}
-            src="https://www.highperformanceformat.com/ee6632ab89f404d63d360e459d424ba6/invoke.js"
-          />
-        </div>
-
-        <AdPlaceholder position="middle" />
-
         {/* AUTH SECTION */}
         <div className="bg-slate-800/50 backdrop-blur-lg border border-slate-700 rounded-xl p-4 md:p-8 shadow-xl mt-4 md:mt-8">
           <Countdown duration={5} onComplete={() => setCountdownDone(true)} />
@@ -164,8 +135,6 @@ export default function Landing() {
           </button>
         </div>
       </div>
-
-      <AdPlaceholder position="sticky-mobile" />
     </div>
   )
 }
