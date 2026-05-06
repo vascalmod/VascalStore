@@ -7,24 +7,32 @@ export default function AdBanner({ adKey, width, height, src }) {
     if (!containerRef.current) return
     containerRef.current.innerHTML = ''
 
-    const uniqueVar = `atOptions_${adKey.substring(0, 8)}`
+    const divId = `ad-${adKey.substring(0, 8)}`
 
-    const atOptionsScript = document.createElement('script')
-    atOptionsScript.innerHTML = `
-      var ${uniqueVar} = {
+    const div = document.createElement('div')
+    div.id = divId
+    div.style.width = `${width}px`
+    div.style.height = `${height}px`
+    div.style.margin = '0 auto'
+    containerRef.current.appendChild(div)
+
+    const script1 = document.createElement('script')
+    script1.innerHTML = `
+      window.atOptions = window.atOptions || [];
+      window.atOptions.push({
         'key' : '${adKey}',
         'format' : 'iframe',
         'height' : ${height},
         'width' : ${width},
         'params' : {}
-      };
-      window['__${uniqueVar}'] = ${uniqueVar};
+      });
     `
-    containerRef.current.appendChild(atOptionsScript)
+    containerRef.current.appendChild(script1)
 
-    const invokeScript = document.createElement('script')
-    invokeScript.src = src
-    containerRef.current.appendChild(invokeScript)
+    const script2 = document.createElement('script')
+    script2.src = src
+    script2.async = true
+    containerRef.current.appendChild(script2)
 
     return () => {
       if (containerRef.current) containerRef.current.innerHTML = ''
@@ -32,10 +40,8 @@ export default function AdBanner({ adKey, width, height, src }) {
   }, [adKey, width, height, src])
 
   return (
-    <div
-      ref={containerRef}
-      className="my-3 mx-auto"
-      style={{ maxWidth: `${width}px`, maxHeight: `${height}px` }}
-    />
+    <div className="my-3 flex justify-center">
+      <div ref={containerRef} />
+    </div>
   )
 }
