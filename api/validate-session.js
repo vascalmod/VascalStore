@@ -6,20 +6,25 @@ const supabase = createClient(
 )
 
 module.exports = async (req, res) => {
+  res.setHeader('Content-Type', 'application/json')
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
 
   const { sessionToken } = req.body
   if (!sessionToken) return res.status(400).json({ error: 'Session token required' })
 
-  const { data, error } = await supabase
-    .from('key_sessions')
-    .select('*')
-    .eq('session_token', sessionToken)
-    .single()
+  try {
+    const { data, error } = await supabase
+      .from('key_sessions')
+      .select('*')
+      .eq('session_token', sessionToken)
+      .single()
 
-  if (error || !data) return res.status(404).json({ error: 'Session not found' })
-  if (data.used) return res.status(400).json({ error: 'Session already used' })
-  if (new Date() > new Date(data.expires_at)) return res.status(400).json({ error: 'Session expired' })
+    if (error || !data) return res.status(404).json({ error: 'Session not found' })
+    if (data.used) return res.status(400).json({ error: 'Session already used' })
+    if (new Date() > new Date(data.expires_at)) return res.status(400).json({ error: 'Session expired' })
 
-  res.status(200).json({ valid: true })
+    res.status(200).json({ valid: true })
+  } catch (err) {
+    res.status(500).json({ error: 'Internal server error' })
+  }
 }

@@ -1,0 +1,9 @@
+{
+  "name": "vascalapi",
+  "version": "1.0.0",
+  "description": "VascalAPI backend dependencies",
+  "private": true,
+  "dependencies": {
+    "@supabase/supabase-js": "^2.33.0"
+  }
+}
