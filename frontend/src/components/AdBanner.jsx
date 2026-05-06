@@ -1,47 +1,37 @@
-import { useEffect, useRef } from 'react'
+import { useRef, useEffect } from 'react'
 
 export default function AdBanner({ adKey, width, height, src }) {
   const containerRef = useRef(null)
 
   useEffect(() => {
     if (!containerRef.current) return
-    containerRef.current.innerHTML = ''
-
-    const divId = `ad-${adKey.substring(0, 8)}`
+    const container = containerRef.current
+    container.innerHTML = ''
 
     const div = document.createElement('div')
-    div.id = divId
-    div.style.width = `${width}px`
-    div.style.height = `${height}px`
-    div.style.margin = '0 auto'
-    containerRef.current.appendChild(div)
+    div.id = `container-${adKey.substring(0, 8)}`
+    div.style.cssText = `width:${width}px;height:${height}px;margin:0 auto;`
+    container.appendChild(div)
 
-    const script1 = document.createElement('script')
-    script1.innerHTML = `
-      window.atOptions = window.atOptions || [];
-      window.atOptions.push({
+    const configScript = document.createElement('script')
+    configScript.innerHTML = `
+      var atOptions = {
         'key' : '${adKey}',
         'format' : 'iframe',
         'height' : ${height},
         'width' : ${width},
         'params' : {}
-      });
+      };
     `
-    containerRef.current.appendChild(script1)
+    container.appendChild(configScript)
 
-    const script2 = document.createElement('script')
-    script2.src = src
-    script2.async = true
-    containerRef.current.appendChild(script2)
+    const invokeScript = document.createElement('script')
+    invokeScript.src = src
+    invokeScript.async = true
+    container.appendChild(invokeScript)
 
-    return () => {
-      if (containerRef.current) containerRef.current.innerHTML = ''
-    }
+    return () => { container.innerHTML = '' }
   }, [adKey, width, height, src])
 
-  return (
-    <div className="my-3 flex justify-center">
-      <div ref={containerRef} />
-    </div>
-  )
+  return <div ref={containerRef} className="my-3 flex justify-center" />
 }
