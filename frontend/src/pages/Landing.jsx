@@ -33,101 +33,88 @@ export default function Landing() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-900 px-4 py-8 md:px-8 relative">
+    <div className="min-h-screen bg-slate-900 px-3 py-4 md:px-8 md:py-8 relative">
       <AdPlaceholder position="top" />
       
       <div className="max-w-4xl mx-auto">
         {/* HERO SECTION */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-4">
+        <div className="text-center mb-6 md:mb-12">
+          <h1 className="text-3xl md:text-6xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-3">
             VascalAPI
           </h1>
-          <p className="text-slate-300 text-lg md:text-xl mb-3">
+          <p className="text-slate-300 text-base md:text-xl mb-2 px-2">
             Generate free temporary API keys with automatic 8-hour renewal access.
           </p>
-          <p className="text-slate-500 text-sm max-w-2xl mx-auto mb-8">
+          <p className="text-slate-500 text-xs md:text-sm max-w-2xl mx-auto mb-4 px-2">
             This page allows users to generate unlimited temporary keys. Ads on this website help support the developer and maintain the service.
           </p>
 
           {/* HIGHLIGHTED INFO CARD */}
-          <div className="bg-slate-800/50 backdrop-blur-lg border border-cyan-500/30 rounded-xl p-6 max-w-md mx-auto shadow-[0_0_15px_rgba(34,211,238,0.1)]">
-            <h3 className="text-cyan-400 font-bold text-lg mb-4">⚡ Free Key System</h3>
-            <ul className="text-slate-300 text-sm space-y-3 text-left">
+          <div className="bg-slate-800/50 backdrop-blur-lg border border-cyan-500/30 rounded-xl p-4 md:p-6 max-w-md mx-auto shadow-[0_0_15px_rgba(34,211,238,0.1)]">
+            <h3 className="text-cyan-400 font-bold text-base md:text-lg mb-3">⚡ Free Key System</h3>
+            <ul className="text-slate-300 text-sm space-y-2 text-left">
               <li className="flex items-center gap-2">
-                <span className="text-cyan-400 text-lg">✓</span> Unlimited key generation
+                <span className="text-cyan-400">✓</span> Unlimited key generation
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-cyan-400 text-lg">✓</span> 8-hour key duration
+                <span className="text-cyan-400">✓</span> 8-hour key duration
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-cyan-400 text-lg">✓</span> Secure verification
+                <span className="text-cyan-400">✓</span> Secure verification
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-cyan-400 text-lg">✓</span> Fast API access
+                <span className="text-cyan-400">✓</span> Fast API access
               </li>
             </ul>
           </div>
         </div>
 
         {/* SUPPORT / MONETIZATION SECTION */}
-        <div className="bg-slate-800/50 backdrop-blur-lg border border-slate-700 rounded-xl p-6 md:p-8 shadow-xl mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-slate-100 mb-4">
+        <div className="bg-slate-800/50 backdrop-blur-lg border border-slate-700 rounded-xl p-4 md:p-8 shadow-xl mb-4 md:mb-8">
+          <h2 className="text-xl md:text-3xl font-bold text-slate-100 mb-3">
             Support The Developer
           </h2>
-          <p className="text-slate-400 mb-6">
+          <p className="text-slate-400 mb-4 text-sm md:text-base">
             Ads displayed on this page help maintain servers, API infrastructure, and future updates for VascalAPI.
           </p>
 
-          <div className="bg-slate-900/50 rounded-lg p-6 border border-slate-700">
-            <h3 className="text-xl font-semibold text-slate-200 mb-2">
+          <div className="bg-slate-900/50 rounded-lg p-4 md:p-6 border border-slate-700">
+            <h3 className="text-lg md:text-xl font-semibold text-slate-200 mb-2">
               Want a Private License Key?
             </h3>
-            <p className="text-slate-400 mb-6">
+            <p className="text-slate-400 mb-4 text-sm md:text-base">
               If you want a private license key with extended access or premium features, you can directly contact the developer.
             </p>
-            <div className="flex flex-col md:flex-row gap-4">
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block w-full md:w-auto py-3 px-8 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 hover:shadow-[0_0_15px_rgba(168,85,247,0.3)] rounded-lg font-medium transition-all text-center"
-              >
-                DM To Order Key
-              </a>
-              <a
-                href="https://www.profitablecpmratenetwork.com/a4s3j0cr?key=d4d0aabdd24cd28b3145404137cef3f8"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block w-full md:w-auto py-3 px-8 bg-slate-700 hover:bg-slate-600 rounded-lg font-medium transition-all text-center"
-              >
-                Smartlink
-              </a>
-            </div>
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block w-full py-3 px-6 md:px-8 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 hover:shadow-[0_0_15px_rgba(168,85,247,0.3)] rounded-lg font-medium transition-all text-center text-sm md:text-base"
+            >
+              DM To Order Key
+            </a>
           </div>
         </div>
 
         {/* OPTIONAL COUNTERS & STATUS */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <div className="bg-slate-800/50 backdrop-blur-lg border border-slate-700 rounded-xl p-4 text-center hover:border-cyan-500/30 transition-colors">
-            <div className="text-sm text-slate-400 mb-1">Online Users</div>
-            <div className="text-2xl font-bold text-cyan-400">1,247</div>
-            <div className="text-xs text-slate-500">Placeholder</div>
+        <div className="grid grid-cols-3 gap-2 md:gap-4 mb-4 md:mb-8">
+          <div className="bg-slate-800/50 backdrop-blur-lg border border-slate-700 rounded-lg p-2 md:p-4 text-center hover:border-cyan-500/30 transition-colors">
+            <div className="text-xs md:text-sm text-slate-400 mb-1">Online</div>
+            <div className="text-lg md:text-2xl font-bold text-cyan-400">1,247</div>
           </div>
           
-          <div className="bg-slate-800/50 backdrop-blur-lg border border-slate-700 rounded-xl p-4 text-center hover:border-blue-500/30 transition-colors">
-            <div className="text-sm text-slate-400 mb-1">Keys Generated</div>
-            <div className="text-2xl font-bold text-blue-400">89,321</div>
-            <div className="text-xs text-slate-500">Placeholder</div>
+          <div className="bg-slate-800/50 backdrop-blur-lg border border-slate-700 rounded-lg p-2 md:p-4 text-center hover:border-blue-500/30 transition-colors">
+            <div className="text-xs md:text-sm text-slate-400 mb-1">Keys</div>
+            <div className="text-lg md:text-2xl font-bold text-blue-400">89,321</div>
           </div>
           
-          <div className="bg-slate-800/50 backdrop-blur-lg border border-slate-700 rounded-xl p-4 text-center hover:border-green-500/30 transition-colors">
-            <div className="text-sm text-slate-400 mb-1">API Status</div>
-            <div className="text-2xl font-bold text-green-400">ONLINE</div>
-            <div className="text-xs text-slate-500">All systems operational</div>
+          <div className="bg-slate-800/50 backdrop-blur-lg border border-slate-700 rounded-lg p-2 md:p-4 text-center hover:border-green-500/30 transition-colors">
+            <div className="text-xs md:text-sm text-slate-400 mb-1">Status</div>
+            <div className="text-sm md:text-2xl font-bold text-green-400">ONLINE</div>
           </div>
         </div>
 
-        {/* ADDITIONAL BANNERS */}
+        {/* BANNERS - REDUCED SPACING */}
         <AdBanner
           adKey="a44d7edf4b87991fd414ad3ceb09ab89"
           width={468}
@@ -135,34 +122,28 @@ export default function Landing() {
           src="https://www.highperformanceformat.com/a44d7edf4b87991fd414ad3ceb09ab89/invoke.js"
         />
         
-        <AdBanner
-          adKey="e29498aa566573401e1e8a9cdf75f02a"
-          width={160}
-          height={300}
-          src="https://www.highperformanceformat.com/e29498aa566573401e1e8a9cdf75f02a/invoke.js"
-        />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 my-3">
+          <AdBanner
+            adKey="e29498aa566573401e1e8a9cdf75f02a"
+            width={160}
+            height={300}
+            src="https://www.highperformanceformat.com/e29498aa566573401e1e8a9cdf75f02a/invoke.js"
+          />
+          <AdBanner
+            adKey="ee6632ab89f404d63d360e459d424ba6"
+            width={300}
+            height={250}
+            src="https://www.highperformanceformat.com/ee6632ab89f404d63d360e459d424ba6/invoke.js"
+          />
+        </div>
 
         <AdPlaceholder position="middle" />
 
-        <AdBanner
-          adKey="3e7d869c72d88cf159a02db273176ad3"
-          width={160}
-          height={600}
-          src="https://www.highperformanceformat.com/3e7d869c72d88cf159a02db273176ad3/invoke.js"
-        />
-
-        <AdBanner
-          adKey="ee6632ab89f404d63d360e459d424ba6"
-          width={300}
-          height={250}
-          src="https://www.highperformanceformat.com/ee6632ab89f404d63d360e459d424ba6/invoke.js"
-        />
-
         {/* AUTH SECTION */}
-        <div className="bg-slate-800/50 backdrop-blur-lg border border-slate-700 rounded-xl p-6 md:p-8 shadow-xl mt-8">
+        <div className="bg-slate-800/50 backdrop-blur-lg border border-slate-700 rounded-xl p-4 md:p-8 shadow-xl mt-4 md:mt-8">
           <Countdown duration={5} onComplete={() => setCountdownDone(true)} />
 
-          <div className="mb-6">
+          <div className="mb-4">
             <HCaptcha
               ref={useRef(null)}
               sitekey={import.meta.env.VITE_HCAPTCHA_SITE_KEY}
@@ -172,12 +153,12 @@ export default function Landing() {
             />
           </div>
 
-          {error && <div className="text-red-400 mb-4 text-sm">{error}</div>}
+          {error && <div className="text-red-400 mb-3 text-sm">{error}</div>}
 
           <button
             onClick={handleGetKey}
             disabled={!countdownDone || !captchaToken || loading}
-            className="w-full py-3 px-6 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg font-medium transition-all hover:shadow-[0_0_15px_rgba(34,211,238,0.2)]"
+            className="w-full py-3 px-6 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg font-medium transition-all hover:shadow-[0_0_15px_rgba(34,211,238,0.2)] text-sm md:text-base"
           >
             {loading ? 'Creating Session...' : 'Get Your Key'}
           </button>

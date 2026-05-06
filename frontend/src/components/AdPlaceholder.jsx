@@ -4,9 +4,9 @@ export default function AdPlaceholder({ position }) {
   const containerRef = useRef(null)
   
   const styles = {
-    top: 'max-w-[728px] w-full h-[90px] mb-6 mx-auto',
-    middle: 'w-full my-6',
-    'sticky-mobile': 'fixed bottom-4 left-1/2 -translate-x-1/2 w-full max-w-[320px] h-[50px] md:hidden z-50',
+    top: 'w-full max-w-[728px] mx-auto my-3',
+    middle: 'w-full my-3',
+    'sticky-mobile': 'fixed bottom-2 left-1/2 -translate-x-1/2 w-[320px] h-[50px] md:hidden z-50',
   }
 
   useEffect(() => {
@@ -14,10 +14,9 @@ export default function AdPlaceholder({ position }) {
     containerRef.current.innerHTML = ''
 
     if (position === 'top') {
-      // 728x90 Banner
       const atOptionsScript = document.createElement('script')
       atOptionsScript.innerHTML = `
-        atOptions = {
+        var atOptionsTop = {
           'key' : '5526eec597ea64518da9699989bcb4e0',
           'format' : 'iframe',
           'height' : 90,
@@ -32,7 +31,6 @@ export default function AdPlaceholder({ position }) {
       containerRef.current.appendChild(invokeScript)
       
     } else if (position === 'middle') {
-      // Native Banner
       const nativeScript = document.createElement('script')
       nativeScript.async = true
       nativeScript['data-cfasync'] = false
@@ -44,10 +42,9 @@ export default function AdPlaceholder({ position }) {
       containerRef.current.appendChild(nativeDiv)
       
     } else if (position === 'sticky-mobile') {
-      // 320x50 Banner
       const atOptionsScript = document.createElement('script')
       atOptionsScript.innerHTML = `
-        atOptions = {
+        var atOptionsMobile = {
           'key' : '7d80898bdfa0dcee5ab024793d9c44a9',
           'format' : 'iframe',
           'height' : 50,
@@ -70,7 +67,7 @@ export default function AdPlaceholder({ position }) {
   return (
     <div
       ref={containerRef}
-      className={`${styles[position]} bg-slate-800/50 border border-slate-700 rounded-lg overflow-hidden`}
+      className={`${styles[position]} overflow-hidden`}
     />
   )
 }

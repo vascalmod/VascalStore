@@ -7,15 +7,18 @@ export default function AdBanner({ adKey, width, height, src }) {
     if (!containerRef.current) return
     containerRef.current.innerHTML = ''
 
+    const uniqueVar = `atOptions_${adKey.substring(0, 8)}`
+
     const atOptionsScript = document.createElement('script')
     atOptionsScript.innerHTML = `
-      atOptions = {
+      var ${uniqueVar} = {
         'key' : '${adKey}',
         'format' : 'iframe',
         'height' : ${height},
         'width' : ${width},
         'params' : {}
       };
+      window['__${uniqueVar}'] = ${uniqueVar};
     `
     containerRef.current.appendChild(atOptionsScript)
 
@@ -31,8 +34,8 @@ export default function AdBanner({ adKey, width, height, src }) {
   return (
     <div
       ref={containerRef}
-      className="my-6 mx-auto"
-      style={{ width: `${width}px`, height: `${height}px` }}
+      className="my-3 mx-auto"
+      style={{ maxWidth: `${width}px`, maxHeight: `${height}px` }}
     />
   )
 }
