@@ -2,6 +2,7 @@ import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import HCaptcha from '@hcaptcha/react-hcaptcha'
 import AdPlaceholder from '../components/AdPlaceholder'
+import AdBanner from '../components/AdBanner'
 import Countdown from '../components/Countdown'
 
 export default function Landing() {
@@ -84,14 +85,24 @@ export default function Landing() {
             <p className="text-slate-400 mb-6">
               If you want a private license key with extended access or premium features, you can directly contact the developer.
             </p>
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block w-full md:w-auto py-3 px-8 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 hover:shadow-[0_0_15px_rgba(168,85,247,0.3)] rounded-lg font-medium transition-all text-center"
-            >
-              DM To Order Key
-            </a>
+            <div className="flex flex-col md:flex-row gap-4">
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block w-full md:w-auto py-3 px-8 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 hover:shadow-[0_0_15px_rgba(168,85,247,0.3)] rounded-lg font-medium transition-all text-center"
+              >
+                DM To Order Key
+              </a>
+              <a
+                href="https://www.profitablecpmratenetwork.com/a4s3j0cr?key=d4d0aabdd24cd28b3145404137cef3f8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block w-full md:w-auto py-3 px-8 bg-slate-700 hover:bg-slate-600 rounded-lg font-medium transition-all text-center"
+              >
+                Smartlink
+              </a>
+            </div>
           </div>
         </div>
 
@@ -116,9 +127,38 @@ export default function Landing() {
           </div>
         </div>
 
+        {/* ADDITIONAL BANNERS */}
+        <AdBanner
+          adKey="a44d7edf4b87991fd414ad3ceb09ab89"
+          width={468}
+          height={60}
+          src="https://www.highperformanceformat.com/a44d7edf4b87991fd414ad3ceb09ab89/invoke.js"
+        />
+        
+        <AdBanner
+          adKey="e29498aa566573401e1e8a9cdf75f02a"
+          width={160}
+          height={300}
+          src="https://www.highperformanceformat.com/e29498aa566573401e1e8a9cdf75f02a/invoke.js"
+        />
+
         <AdPlaceholder position="middle" />
 
-        {/* AUTH SECTION (EXISTING FUNCTIONALITY) */}
+        <AdBanner
+          adKey="3e7d869c72d88cf159a02db273176ad3"
+          width={160}
+          height={600}
+          src="https://www.highperformanceformat.com/3e7d869c72d88cf159a02db273176ad3/invoke.js"
+        />
+
+        <AdBanner
+          adKey="ee6632ab89f404d63d360e459d424ba6"
+          width={300}
+          height={250}
+          src="https://www.highperformanceformat.com/ee6632ab89f404d63d360e459d424ba6/invoke.js"
+        />
+
+        {/* AUTH SECTION */}
         <div className="bg-slate-800/50 backdrop-blur-lg border border-slate-700 rounded-xl p-6 md:p-8 shadow-xl mt-8">
           <Countdown duration={5} onComplete={() => setCountdownDone(true)} />
 
