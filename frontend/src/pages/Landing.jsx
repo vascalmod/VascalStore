@@ -112,17 +112,22 @@ export default function Landing() {
 
         {/* AUTH SECTION */}
         <div className="bg-slate-800/50 backdrop-blur-lg border border-slate-700 rounded-xl p-4 md:p-8 shadow-xl mt-4 md:mt-8">
-          <Countdown duration={5} onComplete={() => setCountdownDone(true)} />
-
-          <div className="mb-4">
-            <HCaptcha
-              ref={useRef(null)}
-              sitekey={import.meta.env.VITE_HCAPTCHA_SITE_KEY}
-              onVerify={setCaptchaToken}
-              onError={() => setError('Captcha verification failed')}
-              theme="dark"
-            />
-          </div>
+          {!countdownDone ? (
+            <Countdown duration={5} onComplete={() => setCountdownDone(true)} />
+          ) : (
+            <div className="text-center mb-6">
+              <div className="text-green-400 font-medium text-lg mb-4">You can now proceed!</div>
+              <div className="mb-4">
+                <HCaptcha
+                  ref={useRef(null)}
+                  sitekey={import.meta.env.VITE_HCAPTCHA_SITE_KEY}
+                  onVerify={setCaptchaToken}
+                  onError={() => setError('Captcha verification failed')}
+                  theme="dark"
+                />
+              </div>
+            </div>
+          )}
 
           {error && <div className="text-red-400 mb-3 text-sm">{error}</div>}
 
