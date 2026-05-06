@@ -21,7 +21,26 @@ export default function Request() {
   const [expiresAt, setExpiresAt] = useState(null)
   const [timeLeft, setTimeLeft] = useState('')
 
+  // Load saved key from localStorage on mount
   useEffect(() => {
+    const savedKey = localStorage.getItem('vascalapi_key')
+    const savedExpires = localStorage.getItem('vascalapi_expires')
+    
+    if (savedKey && savedExpires) {
+      const expiresDate = new Date(savedExpires)
+      if (expiresDate > new Date()) {
+        setApiKey(savedKey)
+        setExpiresAt(savedExpires)
+        setSessionLoading(false)
+        return
+      } else {
+        // Key expired, clear storage
+        localStorage.removeItem('vascalapi_key')
+        localStorage.removeItem('vascalapi_expires')
+      }
+    }
+
+    // No valid saved key, validate session
     if (!sessionToken) {
       setSessionError('No session token provided')
       setSessionLoading(false)
@@ -55,6 +74,8 @@ export default function Request() {
       const diff = new Date(expiresAt) - new Date()
       if (diff <= 0) {
         setTimeLeft('EXPIRED')
+        localStorage.removeItem('vascalapi_key')
+        localStorage.removeItem('vascalapi_expires')
         return
       }
       const h = Math.floor(diff / 3.6e6)
@@ -79,8 +100,12 @@ export default function Request() {
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || 'Failed to generate key')
+      
+      // Save to state and localStorage
       setApiKey(data.apiKey)
       setExpiresAt(data.expiresAt)
+      localStorage.setItem('vascalapi_key', data.apiKey)
+      localStorage.setItem('vascalapi_expires', data.expiresAt)
     } catch (err) {
       setGenerateError(err.message)
     } finally {
@@ -90,7 +115,7 @@ export default function Request() {
 
   if (sessionLoading) return <LoadingSkeleton />
 
-  if (sessionError) {
+  if (sessionError && !apiKey) {
     return (
       <div className="min-h-screen bg-slate-900 flex items-center justify-center px-4">
         <div className="text-red-400 text-lg text-center">
@@ -131,6 +156,17 @@ export default function Request() {
                   <div className="text-cyan-400 font-medium text-xs md:text-base">{timeLeft}</div>
                 </div>
               </div>
+
+              <button
+                onClick={() => {
+                  localStorage.removeItem('vascalapi_key')
+                  localStorage.removeItem('vascalapi_expires')
+                  navigate('/')
+                }}
+                className="w-full py-3 px-6 bg-slate-700 hover:bg-slate-600 rounded-lg font-medium transition-all text-sm md:text-base"
+              >
+                Generate New Key
+              </button>
             </div>
           ) : (
             <>
