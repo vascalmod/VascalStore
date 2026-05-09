@@ -15,7 +15,6 @@ module.exports = async (req, res) => {
     const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress
     const ipHash = crypto.createHash('sha256').update(ipAddress).digest('hex')
 
-    // Rate limit: max 3 trigger creations per 10 minutes per IP
     const tenMinAgo = new Date(Date.now() - 10 * 6e4).toISOString()
     const { count } = await supabase
       .from('trigger_tokens')
@@ -25,7 +24,6 @@ module.exports = async (req, res) => {
 
     if (count >= 3) return res.status(429).json({ error: 'Rate limit exceeded. Please wait before requesting a new session.' })
 
-    // Generate secure trigger token
     const triggerToken = crypto.randomBytes(32).toString('hex')
     const expiresAt = new Date(Date.now() + 3 * 6e4).toISOString()
 
@@ -38,11 +36,9 @@ module.exports = async (req, res) => {
 
     if (error) return res.status(500).json({ error: 'Database error: ' + error.message })
 
-    const baseUrl = process.env.SITE_URL || `https://${req.headers.host}`
-    const shortlinkDomain = process.env.SHORTLINK_DOMAIN || baseUrl
-    const redirectUrl = `${shortlinkDomain}/session?trigger=${triggerToken}`
+    const linkvertiseUrl = process.env.LINKVERTISE_URL
 
-    res.status(200).json({ redirectUrl, triggerToken })
+    res.status(200).json({ redirectUrl: linkvertiseUrl })
   } catch (err) {
     res.status(500).json({ error: 'Internal server error: ' + err.message })
   }

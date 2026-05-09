@@ -22,26 +22,33 @@ export default function Session() {
   const [keyExpiresAt, setKeyExpiresAt] = useState(null)
   const [keyTimeLeft, setKeyTimeLeft] = useState('')
 
-  // Phase 1: Handle trigger validation (session?trigger=TOKEN)
+  // Phase 1: Handle trigger validation (session?trigger=TOKEN or IP lookup)
   useEffect(() => {
     if (pathToken) {
       setPageState('authenticated')
       return
     }
 
-    if (!triggerToken) {
-      setPageState('error')
-      setErrorMsg('No access token provided. Please start from the homepage.')
-      return
-    }
-
-    const validateTrigger = async () => {
+    const resolveAndValidate = async () => {
       setPageState('loading')
+
       try {
+        let token = triggerToken
+
+        if (!token) {
+          const resolveRes = await fetch('/api/resolve-trigger', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }
+          })
+          const resolveData = await resolveRes.json()
+          if (!resolveRes.ok) throw new Error(resolveData.error || 'No access token found')
+          token = resolveData.triggerToken
+        }
+
         const res = await fetch('/api/validate-trigger', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ triggerToken })
+          body: JSON.stringify({ triggerToken: token })
         })
         const data = await res.json()
         if (!res.ok) throw new Error(data.error || 'Validation failed')
@@ -52,7 +59,7 @@ export default function Session() {
       }
     }
 
-    validateTrigger()
+    resolveAndValidate()
   }, [triggerToken, pathToken, navigate])
 
   // Phase 2: Check session validity
