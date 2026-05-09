@@ -36,7 +36,8 @@ module.exports = async (req, res) => {
     if (!session.active) return res.status(400).json({ error: 'Session has been deactivated' })
     if (new Date() > new Date(session.expires_at)) return res.status(400).json({ error: 'Session expired' })
 
-    const generatedKey = `vapi_${crypto.randomBytes(24).toString('hex')}`
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+    const generatedKey = Array.from(crypto.randomBytes(12), b => chars[b % 36]).join('')
     const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress
     const expiresAt = new Date(Date.now() + 8 * 3.6e6).toISOString()
 
