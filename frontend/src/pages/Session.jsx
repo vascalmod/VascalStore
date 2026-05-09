@@ -188,7 +188,7 @@ export default function Session() {
           {apiKey ? (
             <div className="space-y-6">
               <div>
-                <h2 className="text-lg font-medium mb-3">Your Temporary API Key</h2>
+                <h2 className="text-lg font-medium mb-3">Temporary Key</h2>
                 <div className="flex items-center bg-slate-900 p-4 rounded-lg border border-slate-700 flex-wrap gap-2">
                   <code className="text-cyan-400 break-all text-sm">{apiKey}</code>
                   <CopyButton text={apiKey} />
@@ -208,7 +208,7 @@ export default function Session() {
           ) : (
             <>
               <div className="mb-6">
-                <h2 className="text-lg font-medium mb-4">Generate API Key</h2>
+                <h2 className="text-lg font-medium mb-4">Generate Key</h2>
                 <HCaptcha
                   sitekey={import.meta.env.VITE_HCAPTCHA_SITE_KEY}
                   onVerify={setCaptchaToken}
@@ -228,7 +228,7 @@ export default function Session() {
                 disabled={!captchaToken || generating}
                 className="w-full py-3 px-6 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg font-medium transition-all"
               >
-                {generating ? 'Generating...' : 'Generate API Key'}
+                  {generating ? 'Generating...' : 'Generate Key'}
               </button>
             </>
           )}

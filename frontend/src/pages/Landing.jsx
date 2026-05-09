@@ -59,7 +59,7 @@ export default function Landing() {
         <div className="text-center mb-10">
           <div className="inline-block mb-4">
             <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-cyan-300 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
-              VascalAPI
+              VascalHub
             </div>
           </div>
           <p className="text-slate-400 text-sm md:text-base tracking-wide">
