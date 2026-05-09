@@ -39,7 +39,7 @@ module.exports = async (req, res) => {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
     const generatedKey = Array.from(crypto.randomBytes(12), b => chars[b % 36]).join('')
     const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress
-    const expiresAt = new Date(Date.now() + 8 * 3.6e6).toISOString()
+    const expiresAt = new Date(Date.now() + 3.6e6).toISOString()
 
     const { error: licenseError } = await supabase.from('licenses').insert([{
       key: generatedKey,
