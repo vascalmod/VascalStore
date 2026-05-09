@@ -63,7 +63,7 @@ export default function Landing() {
             </div>
           </div>
           <p className="text-slate-400 text-sm md:text-base tracking-wide">
-            Temporary API key generation system
+            Free key generation system
           </p>
         </div>
 
@@ -150,10 +150,36 @@ export default function Landing() {
           </div>
         </div>
 
-        <div className="mt-6 text-center">
-          <p className="text-slate-600 text-xs">
-            Secured tokens &bull; 3-minute expiry &bull; Single-use
+        <div className="mt-6 text-center space-y-4">
+          <p className="text-slate-500 text-xs leading-relaxed max-w-sm mx-auto">
+            This service is completely free. Generate temporary license keys
+            with no cost. Ads help support development and keep this service running.
           </p>
+
+          <div className="flex items-center justify-center gap-3 pt-2">
+            <a
+              href="https://t.me/finnx2x"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 rounded-lg text-xs font-medium transition-all hover:shadow-[0_0_20px_rgba(245,158,11,0.2)]"
+            >
+              <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.127.087.502.087.502l-1.188 5.576s-.164.492-.655.502c-.492.01-.777-.215-.777-.215l-3.745-2.552-1.248.975c-.275.222-.536.104-.627-.182l-.476-1.555-1.943-.634c-.423-.14-.442-.427-.009-.643l11.074-4.382c.377-.157.71-.045.71-.045z"/>
+              </svg>
+              Premium Key
+            </a>
+            <a
+              href="https://t.me/vascalvip"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 bg-slate-700/50 hover:bg-slate-700 border border-slate-600 rounded-lg text-xs font-medium transition-all"
+            >
+              <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.127.087.502.087.502l-1.188 5.576s-.164.492-.655.502c-.492.01-.777-.215-.777-.215l-3.745-2.552-1.248.975c-.275.222-.536.104-.627-.182l-.476-1.555-1.943-.634c-.423-.14-.442-.427-.009-.643l11.074-4.382c.377-.157.71-.045.71-.045z"/>
+              </svg>
+              Telegram Channel
+            </a>
+          </div>
         </div>
       </div>
     </div>
