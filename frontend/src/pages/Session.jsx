@@ -76,6 +76,10 @@ export default function Session() {
         const data = await res.json()
         if (!res.ok) throw new Error(data.error || 'Invalid session')
         setSessionExpiresAt(data.expiresAt)
+        if (data.existingKey) {
+          setApiKey(data.existingKey)
+          setKeyExpiresAt(data.keyExpiresAt)
+        }
         setPageState('ready')
       } catch (err) {
         setPageState('error')

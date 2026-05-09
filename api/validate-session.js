@@ -28,7 +28,19 @@ module.exports = async (req, res) => {
       return res.status(400).json({ error: 'Your secure session has expired. Please generate a new access session.' })
     }
 
-    res.status(200).json({ valid: true, expiresAt: data.expires_at, createdAt: data.created_at })
+    const { data: license } = await supabase
+      .from('licenses')
+      .select('key, expires_at')
+      .eq('token', sessionToken)
+      .maybeSingle()
+
+    res.status(200).json({
+      valid: true,
+      expiresAt: data.expires_at,
+      createdAt: data.created_at,
+      existingKey: license?.key || null,
+      keyExpiresAt: license?.expires_at || null
+    })
   } catch (err) {
     res.status(500).json({ error: 'Internal server error' })
   }
