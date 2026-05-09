@@ -36,7 +36,7 @@ module.exports = async (req, res) => {
       ip_hash: ipHash
     }])
 
-    if (error) return res.status(500).json({ error: 'Failed to create trigger token' })
+    if (error) return res.status(500).json({ error: 'Database error: ' + error.message })
 
     const baseUrl = process.env.SITE_URL || `https://${req.headers.host}`
     const shortlinkDomain = process.env.SHORTLINK_DOMAIN || baseUrl
@@ -44,6 +44,6 @@ module.exports = async (req, res) => {
 
     res.status(200).json({ redirectUrl, triggerToken })
   } catch (err) {
-    res.status(500).json({ error: 'Internal server error' })
+    res.status(500).json({ error: 'Internal server error: ' + err.message })
   }
 }
