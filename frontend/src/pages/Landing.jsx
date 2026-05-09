@@ -161,7 +161,7 @@ export default function Landing() {
               href="https://t.me/finnx2x"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 rounded-lg text-xs font-medium transition-all hover:shadow-[0_0_20px_rgba(245,158,11,0.2)]"
+              className="inline-flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 rounded-lg text-xs font-medium transition-all hover:shadow-[0_0_20px_rgba(34,211,238,0.2)]"
             >
               <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.127.087.502.087.502l-1.188 5.576s-.164.492-.655.502c-.492.01-.777-.215-.777-.215l-3.745-2.552-1.248.975c-.275.222-.536.104-.627-.182l-.476-1.555-1.943-.634c-.423-.14-.442-.427-.009-.643l11.074-4.382c.377-.157.71-.045.71-.045z"/>
