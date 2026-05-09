@@ -46,7 +46,9 @@ module.exports = async (req, res) => {
       token: sessionToken,
       ip_address: ipAddress,
       expires_at: expiresAt,
-      status: 'active'
+      status: 'active',
+      max_devices: 1,
+      duration_seconds: 3600
     }])
 
     if (licenseError) return res.status(500).json({ error: 'Database error: ' + licenseError.message })
