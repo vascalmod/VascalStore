@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
     const { data, error } = await supabase
       .from('licenses')
       .select('*')
-      .eq('api_key', apiKey)
+      .eq('key', apiKey)
       .single()
 
     if (error || !data) return res.status(404).json({ error: 'API key not found' })
@@ -24,6 +24,6 @@ module.exports = async (req, res) => {
     const status = new Date() > new Date(data.expires_at) ? 'EXPIRED' : 'ACTIVE'
     res.status(200).json({ status })
   } catch (err) {
-    res.status(500).json({ error: 'Internal server error' })
+    res.status(500).json({ error: 'Internal server error: ' + err.message })
   }
 }

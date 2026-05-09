@@ -36,22 +36,22 @@ module.exports = async (req, res) => {
     if (!session.active) return res.status(400).json({ error: 'Session has been deactivated' })
     if (new Date() > new Date(session.expires_at)) return res.status(400).json({ error: 'Session expired' })
 
-    const apiKey = `vapi_${crypto.randomBytes(24).toString('hex')}`
+    const generatedKey = `vapi_${crypto.randomBytes(24).toString('hex')}`
     const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress
     const expiresAt = new Date(Date.now() + 8 * 3.6e6).toISOString()
 
     const { error: licenseError } = await supabase.from('licenses').insert([{
-      api_key: apiKey,
-      session_token: sessionToken,
+      key: generatedKey,
+      token: sessionToken,
       ip_address: ipAddress,
       expires_at: expiresAt,
       status: 'ACTIVE'
     }])
 
-    if (licenseError) return res.status(500).json({ error: 'Failed to generate key' })
+    if (licenseError) return res.status(500).json({ error: 'Database error: ' + licenseError.message })
 
-    res.status(200).json({ apiKey, expiresAt })
+    res.status(200).json({ apiKey: generatedKey, expiresAt })
   } catch (err) {
-    res.status(500).json({ error: 'Internal server error' })
+    res.status(500).json({ error: 'Internal server error: ' + err.message })
   }
 }
