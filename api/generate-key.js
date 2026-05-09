@@ -27,13 +27,13 @@ module.exports = async (req, res) => {
     if (!captchaData.success) return res.status(400).json({ error: 'Captcha verification failed' })
 
     const { data: session, error: sessionError } = await supabase
-      .from('key_sessions')
+      .from('user_sessions')
       .select('*')
       .eq('session_token', sessionToken)
       .single()
 
     if (sessionError || !session) return res.status(404).json({ error: 'Invalid session' })
-    if (session.used) return res.status(400).json({ error: 'Session already used' })
+    if (!session.active) return res.status(400).json({ error: 'Session has been deactivated' })
     if (new Date() > new Date(session.expires_at)) return res.status(400).json({ error: 'Session expired' })
 
     const apiKey = `vapi_${crypto.randomBytes(24).toString('hex')}`
@@ -49,8 +49,6 @@ module.exports = async (req, res) => {
     }])
 
     if (licenseError) return res.status(500).json({ error: 'Failed to generate key' })
-
-    await supabase.from('key_sessions').update({ used: true }).eq('session_token', sessionToken)
 
     res.status(200).json({ apiKey, expiresAt })
   } catch (err) {
